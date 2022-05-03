@@ -64,6 +64,10 @@ body {
 	background-color: hsl(0, 84%, 75%);
 }
 
+.btn:active {
+	background-color: hsl(0, 84%, 60%);
+}
+
 .ac {
 	grid-column: span 2;
 }
