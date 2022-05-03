@@ -71,3 +71,7 @@ body {
 .ac {
 	grid-column: span 2;
 }
+
+.cero {
+	grid-column: span 2;
+}
