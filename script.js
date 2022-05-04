@@ -39,6 +39,7 @@ const operate = (operator, num1, num2) => {
 };
 
 let displayNumber = "";
+let operationResult = 0;
 
 numbers.forEach((num) => {
 	num.addEventListener("click", () => {
@@ -56,4 +57,9 @@ pointBtn.addEventListener("click", () => {
 acBtn.addEventListener("click", () => {
 	displayNumber = "";
 	currentNumberEle.textContent = 0;
+});
+
+delBtn.addEventListener("click", () => {
+	displayNumber = displayNumber.substring(0, displayNumber.length - 1);
+	currentNumberEle.textContent = displayNumber;
 });
