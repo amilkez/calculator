@@ -47,14 +47,11 @@ numbers.forEach((num) => {
 	});
 });
 
-pointBtn.addEventListener(
-	"click",
-	() => {
-		displayNumber += ".";
-		currentNumberEle.textContent = displayNumber;
-	},
-	{ once: true }
-);
+pointBtn.addEventListener("click", () => {
+	if (displayNumber.includes(".")) return;
+	displayNumber += ".";
+	currentNumberEle.textContent = displayNumber;
+});
 
 acBtn.addEventListener("click", () => {
 	displayNumber = "";
