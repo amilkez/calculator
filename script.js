@@ -2,11 +2,10 @@ const currentNumberEle = document.querySelector(".current-number");
 const lastOperation = document.querySelector(".last-operation");
 const numbers = document.querySelectorAll(".num");
 const operators = document.querySelectorAll("operator");
-const point = document.querySelector(".point");
-const ac = document.querySelector(".ac");
-const del = document.querySelector(".del");
-const clear = document.querySelector(".clear");
-const equal = document.querySelector(".equal");
+const pointBtn = document.querySelector(".point");
+const acBtn = document.querySelector(".ac");
+const delBtn = document.querySelector(".del");
+const equalsBtn = document.querySelector(".equal");
 
 const add = (num1, num2) => {
 	return num1 + num2;
@@ -48,7 +47,7 @@ numbers.forEach((num) => {
 	});
 });
 
-point.addEventListener(
+pointBtn.addEventListener(
 	"click",
 	() => {
 		displayNumber += ".";
@@ -56,3 +55,8 @@ point.addEventListener(
 	},
 	{ once: true }
 );
+
+acBtn.addEventListener("click", () => {
+	displayNumber = "";
+	currentNumberEle.textContent = 0;
+});
