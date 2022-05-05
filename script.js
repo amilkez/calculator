@@ -1,7 +1,7 @@
 const currentNumberEle = document.querySelector(".current-number");
-const lastOperation = document.querySelector(".last-operation");
+const lastOperationEle = document.querySelector(".last-operation");
 const numbers = document.querySelectorAll(".num");
-const operators = document.querySelectorAll("operator");
+const operators = document.querySelectorAll(".operator");
 const pointBtn = document.querySelector(".point");
 const acBtn = document.querySelector(".ac");
 const delBtn = document.querySelector(".del");
@@ -38,28 +38,57 @@ const operate = (operator, num1, num2) => {
 	}
 };
 
-let displayNumber = "";
+let currentNumber = "";
+let lastNumber = "";
+let lastOperation = "";
+let currentOperator = "";
 let operationResult = 0;
 
 numbers.forEach((num) => {
 	num.addEventListener("click", () => {
-		displayNumber += num.textContent;
-		currentNumberEle.textContent = displayNumber;
+		currentNumber += num.textContent;
+		currentNumberEle.textContent = currentNumber;
 	});
 });
 
 pointBtn.addEventListener("click", () => {
-	if (displayNumber.includes(".")) return;
-	displayNumber += ".";
-	currentNumberEle.textContent = displayNumber;
+	if (currentNumber.includes(".")) return;
+	currentNumber += ".";
+	currentNumberEle.textContent = currentNumber;
 });
 
 acBtn.addEventListener("click", () => {
-	displayNumber = "";
 	currentNumberEle.textContent = 0;
+	lastOperationEle.textContent = "";
+	currentNumber = "";
+	lastNumber = "";
+	lastOperation = "";
+	currentOperator = "";
+	operationResult = 0;
 });
 
 delBtn.addEventListener("click", () => {
-	displayNumber = displayNumber.substring(0, displayNumber.length - 1);
-	currentNumberEle.textContent = displayNumber;
+	currentNumber = currentNumber.substring(0, currentNumber.length - 1);
+	currentNumberEle.textContent = currentNumber;
+});
+
+operators.forEach((operator) => {
+	operator.addEventListener("click", () => {
+		lastNumber = Number(currentNumber);
+		currentOperator = operator.textContent;
+		lastOperation = `${lastNumber} ${currentOperator}`;
+		lastOperationEle.textContent = lastOperation;
+		currentNumber = "";
+	});
+});
+
+equalsBtn.addEventListener("click", () => {
+	lastOperation = `${lastNumber} ${currentOperator} ${currentNumber}`;
+
+	currentNumber = Number(currentNumber);
+	operationResult = operate(currentOperator, lastNumber, currentNumber);
+	lastNumber = operationResult;
+	currentNumberEle.textContent = operationResult;
+	lastOperationEle.textContent = lastOperation;
+	currentNumber = lastNumber;
 });
